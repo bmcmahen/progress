@@ -9,7 +9,7 @@
         padding: 100px;
       }
       canvas {
-        padding: 5px;   
+        padding: 5px;
       }
     </style>
   </head>
@@ -34,7 +34,7 @@
       var Progress = require('progress');
 
       var progress = new Progress;
-      progress.size(100);
+      progress.size(100).lineWidth(20);
       document.body.appendChild(progress.el);
 
       var n = 0;

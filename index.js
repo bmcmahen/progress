@@ -21,6 +21,7 @@ function Progress() {
   this.ctx = this.el.getContext('2d');
   this.size(50);
   this.fontSize(11);
+  this.lineWidth(2);
   this.font('helvetica, arial, sans-serif');
 }
 
@@ -92,6 +93,20 @@ Progress.prototype.update = function(n){
   return this;
 };
 
+
+/**
+ * Set linewidth to 'n'.
+ * @param  {Number} n
+ * @return {Progress}
+ * @api public
+ */
+
+Progress.prototype.lineWidth = function(n){
+  this._lineWidth = n;
+  return this;
+};
+
+
 /**
  * Draw on `ctx`.
  *
@@ -102,12 +117,12 @@ Progress.prototype.update = function(n){
 
 Progress.prototype.draw = function(ctx){
   var percent = Math.min(this.percent, 100)
-    , ratio = window.devicePixelRatio || 1
+    , ratio = (window.devicePixelRatio || 1)
     , size = this.el.width / ratio
     , half = size / 2
     , x = half
     , y = half
-    , rad = half - 1
+    , rad = half - this._lineWidth
     , fontSize = this._fontSize;
 
   ctx.font = fontSize + 'px ' + this._font;
@@ -116,15 +131,16 @@ Progress.prototype.draw = function(ctx){
   ctx.clearRect(0, 0, size, size);
 
   // outer circle
-  ctx.strokeStyle = '#9f9f9f';
+  ctx.strokeStyle = '#5cb85c';
+  ctx.lineWidth = this._lineWidth;
   ctx.beginPath();
   ctx.arc(x, y, rad, 0, angle, false);
   ctx.stroke();
 
   // inner circle
-  ctx.strokeStyle = '#eee';
+  ctx.strokeStyle = '#D1E9D1';
   ctx.beginPath();
-  ctx.arc(x, y, rad - 1, 0, angle, true);
+  ctx.arc(x, y, rad, 0, angle, true);
   ctx.stroke();
 
   // text
