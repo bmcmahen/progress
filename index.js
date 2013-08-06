@@ -130,6 +130,13 @@ Progress.prototype.draw = function(ctx){
   var angle = Math.PI * 2 * (percent / 100);
   ctx.clearRect(0, 0, size, size);
 
+  // background circle
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.beginPath();
+  ctx.arc(x, y, rad, 0, angle, false);
+  ctx.closePath();
+  ctx.fill();
+
   // outer circle
   ctx.strokeStyle = '#5cb85c';
   ctx.lineWidth = this._lineWidth;
@@ -143,6 +150,7 @@ Progress.prototype.draw = function(ctx){
   ctx.arc(x, y, rad, 0, angle, true);
   ctx.stroke();
 
+  ctx.fillStyle = '#333';
   // text
   var text = this._text || (percent | 0) + '%'
     , w = ctx.measureText(text).width;
