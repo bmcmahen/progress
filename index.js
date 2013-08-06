@@ -131,7 +131,8 @@ Progress.prototype.draw = function(ctx){
   ctx.clearRect(0, 0, size, size);
 
   // background circle
-  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  // safari has troubles with the transparency...
+  ctx.fillStyle = 'white';
   ctx.beginPath();
   ctx.arc(x, y, rad, 0, Math.PI*2, false);
   ctx.closePath();
