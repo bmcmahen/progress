@@ -133,7 +133,7 @@ Progress.prototype.draw = function(ctx){
   // background circle
   ctx.fillStyle = 'rgba(255,255,255,0.9)';
   ctx.beginPath();
-  ctx.arc(x, y, rad, 0, angle, false);
+  ctx.arc(x, y, rad, 0, Math.PI*2, false);
   ctx.closePath();
   ctx.fill();
 
